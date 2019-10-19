@@ -31,12 +31,12 @@
                     <navigationItem key="navigationItem" id="dkd-ws-B1e">
                         <barButtonItem key="rightBarButtonItem" systemItem="camera" id="Dp4-pI-LkH">
                             <connections>
-                                <action selector="cameraTapped:" destination="BYZ-38-t0r" id="BZM-4A-ZGe"/>
+                                <action selector="cameraTapped:" destination="BYZ-38-t0r" id="pcx-xt-SeX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="imageView" destination="yYV-t4-xCi" id="bLy-8W-2qc"/>
+                        <outlet property="imageView" destination="yYV-t4-xCi" id="QQe-AU-CKP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
