@@ -44,20 +44,32 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             fatalError("Loading CoreML Model Failed.")
         }
         // A partir daqui funciona se o resultado nao for nil
-        let request = VNCoreMLRequest(model: model) { (request, error) in
-            guard let results = request.results as? [VNClassificationObservation] else {
-                fatalError("Model failed to process image.")
-            }
-         
-            // O que queremos que faca
-            print(results)
-            if let firstResult = results.first {
-                if firstResult.identifier.contains("hot dog") {
-                    self.navigationItem.title = "Hot dog!" }
-                else {
-                    self.navigationItem.title = "Not hot dog!"
-                }
-        }
+                   let request = VNCoreMLRequest(model: model) { (request, error) in
+                    guard let results = request.results as? [VNClassificationObservation] else { return }
+                    
+                    guard let mostConfidentResult = results.first else { return }
+                    print(results)
+                    DispatchQueue.main.async {
+              if mostConfidentResult.confidence >= 0.010 {
+                
+                self.navigationItem.title = "\(mostConfidentResult)"
+              //      let confidenceText = "\n \(Int(mostConfidentResult.confidence * 100.0))% confidence"
+                    
+//                          switch mostConfidentResult.identifier {
+//                                case "dog":
+//                                    self.navigationItem.title = "É um cachorro"
+//                                case "cat":
+//                                    self.navigationItem.title = "é um gatinho"
+//                                 case "rabbit":
+//                                    self.navigationItem.title = "é um coelhino"
+//                          default:
+//                            print("nenhum ta")
+//        }
+//                 } else  {
+//                    self.navigationItem.title = "Nenhum"
+//                    }
+                    }
+                    }
         }
         
         let handler = VNImageRequestHandler(ciImage : image)
